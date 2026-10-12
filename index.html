@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Finance Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Personal Finance Tracker</h1>
+    <p>Log your daily expenses and see where your money goes.</p>
+  </header>
+
+  <main>
+    <section class="card form-section">
+      <h2>Add an Expense</h2>
+      <form id="expense-form">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          id="description"
+          placeholder="e.g. Coffee with Sam (optional)"
+        />
+
+        <label for="amount">Amount ($)</label>
+        <input
+          type="number"
+          id="amount"
+          step="0.01"
+          min="0.01"
+          placeholder="e.g. 4.50"
+          required
+        />
+
+        <label>Category</label>
+        <div class="category-select" id="category-select">
+          <button
+            type="button"
+            id="category-toggle"
+            class="category-toggle"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            <span id="category-toggle-label">Choose a category</span>
+          </button>
+          <ul class="category-menu" id="category-menu" role="listbox" hidden></ul>
+        </div>
+        <div class="new-category-row" id="new-category-row" hidden>
+          <input
+            type="text"
+            id="new-category-name"
+            placeholder="e.g. Pets"
+            maxlength="20"
+          />
+          <button type="button" id="add-category-btn">Add</button>
+          <button
+            type="button"
+            id="cancel-category-btn"
+            aria-label="Cancel adding category"
+          >
+            ✕
+          </button>
+        </div>
+        <p class="category-status" id="category-status" hidden></p>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" required />
+
+        <button type="submit">Add Expense</button>
+      </form>
+    </section>
+
+    <section class="card summary-section">
+      <h2>This Month</h2>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-label">Total Spent</span>
+          <span class="stat-value" id="total-spent">$0.00</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Entries</span>
+          <span class="stat-value" id="entry-count">0</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card chart-section">
+      <h2>Spending Trend</h2>
+      <div class="chart-container">
+        <canvas id="spending-chart"></canvas>
+      </div>
+    </section>
+
+    <section class="card list-section">
+      <h2>Expense History</h2>
+      <ul id="expense-list"></ul>
+      <p id="empty-message">No expenses logged yet — add your first one above!</p>
+    </section>
+  </main>
+
+  <script src="js/storage.js" defer></script>
+  <script src="js/charts.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
