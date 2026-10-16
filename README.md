@@ -1,2 +1,3 @@
 # Personal-Finance-Tracker
-a web app to track personal finance
+
+building a web app to track personal finance and learn C++, HTML/CSS in the process
